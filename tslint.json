@@ -1,0 +1,15 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "member-access": [true, "no-public"],
+    "interface-name": [true, "never-prefix"],
+    "object-literal-sort-keys": false,
+    "ordered-imports": true
+  },
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": ["src/migration/*.ts"]
+  }
+}

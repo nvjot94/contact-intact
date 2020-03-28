@@ -1,0 +1,21 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Webpack directories
+.webpack
+
+# tsc source file
+dist
+
+# build file
+.build
+
+# vscode file
+.vscode
+
+# local db config
+.env
