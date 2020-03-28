@@ -3,8 +3,13 @@ import bodyParser from 'body-parser';
 import userRouter from './routes/user/users';
 import contactRouter from './routes/contact/contacts';
 import authRouter from './routes/auth/auth';
+import connectDb from './connection';
 const app: Application = express();
 
+//connecting the database
+connectDb();
+
+//middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
