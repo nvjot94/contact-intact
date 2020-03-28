@@ -1,8 +1,8 @@
-import App from "./server";
+import start from "./server";
 
-const port = parseInt(process.env.PORT || '3000');
+const port: Number = parseInt(process.env.PORT || '3000');
 
-const app = new App().start(port)
+start(port)
     .then(port => console.log(`server running at ${port}`))
     .catch(error => {
         console.log(error);
