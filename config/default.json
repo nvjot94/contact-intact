@@ -1,3 +1,4 @@
 {
-    "dbUrl": "mongodb+srv://nvjotsingh:nvjotsingh@contact-intact-0ow2l.mongodb.net/test?retryWrites=true&w=majority"
+    "dbUrl": "mongodb+srv://nvjotsingh:nvjotsingh@contact-intact-0ow2l.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtToken": "contact-intact"
 }

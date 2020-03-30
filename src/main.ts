@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import userRouter from './routes/user/user.controller';
+import userRouter from './routes/user/user';
 import contactRouter from './routes/contact/contacts';
 import authRouter from './routes/auth/auth';
 import connectDb from './database/connection';
