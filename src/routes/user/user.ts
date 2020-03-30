@@ -1,7 +1,7 @@
 import express, { Request, Router, Response } from 'express';
 import { check, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
-import User from '../../database/models/User';
+import User from '../../database/models/Contact';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
