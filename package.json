@@ -7,13 +7,17 @@
     "start": "NODE_ENV=localenv tsc -p tsconfig.build.json",
     "build": "tsc -p tsconfig.build.json",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"nodemon start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.3",
     "@types/node": "^13.9.0",
+    "concurrently": "^5.1.0",
     "nodemon": "^2.0.2",
     "tsconfig-paths": "^3.9.0",
     "tslint-config-prettier": "^1.18.0",

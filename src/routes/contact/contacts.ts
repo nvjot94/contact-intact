@@ -23,13 +23,15 @@ contactRouter.get('/', AuthMiddleware, async (req: Request, res: Response) => {
 // @access private
 
 contactRouter.delete('/:id', AuthMiddleware, async (req: Request, res: Response) => {
-    let userId = (req as any).user.id;
+    let userId = (req as any).user.id.toString();
     try {
         let contact: any = await Contact.findById(req.params.id);
 
-        if (!contact) res.status(401).json({ "msg": "contact not found" });
+        if (!contact) return res.status(401).json({ "msg": "contact not found" });
 
-        if (contact.user.toString() !== userId) res.status(401).json({ "msg": "Not authorized" });
+        if (contact.user.toString() !== userId) return res.status(401).json({ "msg": "Not authorized" });
+
+
         await Contact.findByIdAndDelete(req.params.id);
         res.json({ "msg": "contact deleted" });
     }
@@ -61,11 +63,12 @@ contactRouter.put('/:id', AuthMiddleware, async (req: Request, res: Response) =>
             return res.status(404).json({ "msg": "contact not found" });
         }
         if (contact.user.toString() !== userId) return res.status(404).json({ "msg": "Not authorized" });
-        contact = await Contact.findByIdAndUpdate(req.params.id, { $set: updatedContact }, { new: true })
+
+        contact = await Contact.findByIdAndUpdate(req.params.id, { $set: updatedContact }, { new: true });
         res.json(contact);
     }
     catch (e) {
-        res.status(500).send(e.message);
+        res.status(500).json(e);
     }
 });
 

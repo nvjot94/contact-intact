@@ -5,7 +5,7 @@ import contactRouter from './routes/contact/contacts';
 import authRouter from './routes/auth/auth';
 import connectDb from './database/connection';
 const app: Application = express();
-const port: number = parseInt(process.env.PORT || '3000');
+const port: number = parseInt(process.env.PORT || '5000');
 //connecting the database
 connectDb();
 
