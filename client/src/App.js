@@ -8,7 +8,13 @@ import AuthState from "./context/auth/AuthState";
 import AlertState from "./context/alert/AlertState";
 import Register from "./components/auth/register";
 import Login from "./components/auth/login";
+import Alert from "./components/layout/Alerts";
+import setAuthToken from "./setAuthToken";
 import "./App.css";
+
+if (localStorage) {
+  setAuthToken(localStorage.token);
+}
 const App = () => {
   return (
     <AuthState>
@@ -18,6 +24,7 @@ const App = () => {
             <Fragment>
               <Navbar />
               <div className="container">
+                <Alert />
                 <Switch>
                   <Route exact path="/" component={Home}></Route>
                   <Route exact path="/about" component={About}></Route>

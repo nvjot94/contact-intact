@@ -1,10 +1,28 @@
-import React, { useState } from "react";
-
-export const Login = () => {
+import React, { useState, useContext, useEffect } from "react";
+import AlertContext from "../../context/alert/AlertContext";
+import AuthContext from "../../context/auth/AuthContext";
+export const Login = props => {
   const [user, setUser] = useState({
     email: "",
     password: ""
   });
+
+  const { email, password } = user;
+
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+  const { setAlert } = alertContext;
+  const { isAuthenticated, loginUser, clearErrors, error } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
+    if (error === "Invalid credentials") {
+      setAlert(error, "danger");
+      clearErrors();
+    }
+  }, [error, isAuthenticated, props.history]);
 
   const onChange = event => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -12,9 +30,13 @@ export const Login = () => {
 
   const onSubmit = event => {
     event.preventDefault();
-    console.log("login submit", user);
+    if (email === "" || password === "") {
+      setAlert("please enter all fields", "danger");
+    } else {
+      loginUser({ email, password });
+    }
   };
-  const { email, password } = user;
+
   return (
     <div className="form-container">
       <h1>

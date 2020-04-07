@@ -1,7 +1,8 @@
 import React, { useReducer } from "react";
 import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
-
+import axios from "axios";
+import setAuthToken from "../../setAuthToken";
 import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
@@ -25,10 +26,53 @@ const AuthState = props => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   //load user
-  //register user
+  const loadUser = async () => {
+    if (localStorage) {
+      setAuthToken(localStorage.token);
+    }
+    try {
+      const res = await axios.get("http://localhost:8080/api/auth");
+      dispatch({ type: USER_LOADED, payload: res.data });
+    } catch (error) {
+      dispatch({ type: AUTH_ERROR });
+    }
+  };
+
   //login user
+  const loginUser = async loginData => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/auth", loginData, config);
+      dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+      loadUser();
+    } catch (error) {
+      dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
+    }
+  };
   //logout
   //clear errors
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+
+  //register user
+  const registerUser = async formData => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    try {
+      const response = await axios.post("http://localhost:8080/api/user", formData, config);
+      dispatch({ type: REGISTER_SUCCESS, payload: response.data });
+      loadUser();
+    } catch (error) {
+      dispatch({ type: REGISTER_FAIL, payload: error.response.data.msg });
+    }
+  };
 
   return (
     <AuthContext.Provider
@@ -37,7 +81,11 @@ const AuthState = props => {
         user: state.user,
         loading: state.loading,
         isAuthenticated: state.isAuthenticated,
-        error: state.error
+        error: state.error,
+        registerUser,
+        clearErrors,
+        loadUser,
+        loginUser
       }}
     >
       {props.children}
