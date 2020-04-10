@@ -1,8 +1,8 @@
 {
-  "name": "scheduler-be",
+  "name": "qq",
   "version": "1.0.0",
-  "description": " A scheduler API",
-  "main": "main.js",
+  "description": " MERN APP",
+  "main": "dist/main.js",
   "scripts": {
     "start": "NODE_ENV=localenv tsc -p tsconfig.build.json",
     "build": "tsc -p tsconfig.build.json",
@@ -10,7 +10,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
-    "dev": "concurrently \"nodemon start\" \"npm run client\""
+    "prepare": "npm run build",
+    "dev": "concurrently \"nodemon start\" \"npm run client\"",
+    "postinstall": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",

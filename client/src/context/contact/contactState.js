@@ -48,7 +48,7 @@ const ContactState = props => {
       }
     };
 
-    const res = await axios.post(contactUrl, contact, config);
+    const res = await axios.post("api/contact", contact, config);
     try {
       dispatch({ type: ADD_CONTACT, payload: res.data });
     } catch (error) {
@@ -58,7 +58,7 @@ const ContactState = props => {
 
   //delete contact
   const deleteContact = async id => {
-    const res = await axios.delete(`${contactUrl + `/${id}`}`);
+    const res = await axios.delete(`${"api/contact" + `/${id}`}`);
     try {
       dispatch({ type: DELETE_CONTACT, payload: id });
     } catch (error) {
@@ -91,7 +91,7 @@ const ContactState = props => {
         "Content-Type": "application/json"
       }
     };
-    const res = await axios.put(`${contactUrl + `/${contact._id}`}`, contact, config);
+    const res = await axios.put(`${"api/contact" + `/${contact._id}`}`, contact, config);
     try {
       dispatch({ type: UPDATE_CONTACT, payload: res.data });
     } catch (error) {
