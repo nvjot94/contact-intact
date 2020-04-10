@@ -22,6 +22,7 @@ export const Login = props => {
       setAlert(error, "danger");
       clearErrors();
     }
+    //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 
   const onChange = event => {
@@ -34,6 +35,10 @@ export const Login = props => {
       setAlert("please enter all fields", "danger");
     } else {
       loginUser({ email, password });
+      if (error === "Invalid credentials") {
+        setAlert(error, "danger");
+        clearErrors();
+      }
     }
   };
 

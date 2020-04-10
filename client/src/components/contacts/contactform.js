@@ -52,9 +52,30 @@ export const ContactForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h2 className="text-primary">{!current ? "Add Contact" : "Edit Contact"}</h2>
-      <input type="text" placeholder="name" name="name" value={name} onChange={onChange}></input>
-      <input type="text" placeholder="email" name="email" value={email} onChange={onChange}></input>
-      <input type="text" placeholder="phone" name="phone" value={phone} onChange={onChange}></input>
+      <input
+        type="text"
+        placeholder="name"
+        name="name"
+        value={name}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        type="text"
+        placeholder="email"
+        name="email"
+        value={email}
+        onChange={onChange}
+        required
+      ></input>
+      <input
+        type="text"
+        placeholder="phone"
+        name="phone"
+        value={phone}
+        onChange={onChange}
+        required
+      ></input>
       <h5> Contact Type</h5>
       <input
         type="radio"
