@@ -9,7 +9,6 @@ jspm_packages
 .webpack
 
 # tsc source file
-dist
 
 # build file
 .build
