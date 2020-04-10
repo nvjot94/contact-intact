@@ -18,8 +18,7 @@
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2",
     "tsconfig-paths": "^3.9.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typecript": "^1.0.0"
+    "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
