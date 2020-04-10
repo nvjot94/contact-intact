@@ -4,9 +4,13 @@
   "description": " MERN APP",
   "main": "dist/main.js",
   "scripts": {
-    "start": "node main.js --prefix dist",
+    "start": "NODE_ENV=localenv tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
+    "prepare": "npm run build",
     "dev": "concurrently \"nodemon start\" \"npm run client\"",
     "postinstall": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -18,9 +22,11 @@
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2",
     "tsconfig-paths": "^3.9.0",
-    "tslint-config-prettier": "^1.18.0"
+    "tslint-config-prettier": "^1.18.0",
+    "typecript": "^1.0.0"
   },
   "dependencies": {
+    "typecript": "^1.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/config": "0.0.36",
     "@types/jsonwebtoken": "^8.3.8",
@@ -31,6 +37,8 @@
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.6"
+    "mongoose": "^5.9.6",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
   }
 }
